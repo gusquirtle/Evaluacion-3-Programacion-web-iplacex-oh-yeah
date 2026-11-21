@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Ejercicio 1{% endblock %}
+{% block contenido %}
+<section class="tarjeta" aria-labelledby="titulo">
+  <a class="volver" href="{{ url_for('inicio') }}">← Volver al menú</a>
+  <h1 id="titulo">Formulario de notas</h1>
+  <p>Ingresa tres notas entre 10 y 70 y el porcentaje de asistencia.</p>
+  {% if error %}<div class="alerta" role="alert">{{ error }}</div>{% endif %}
+  <form method="post" action="{{ url_for('ejercicio1') }}">
+    {% for numero in range(1, 4) %}
+    <div class="campo">
+      <label for="nota{{ numero }}">Nota {{ numero }}</label>
+      <input id="nota{{ numero }}" name="nota{{ numero }}" type="number" min="10" max="70" step="any" value="{{ datos['nota' ~ numero] }}" required>
+    </div>
+    {% endfor %}
+    <div class="campo">
+      <label for="asistencia">Asistencia (%)</label>
+      <input id="asistencia" name="asistencia" type="number" min="0" max="100" step="any" value="{{ datos.asistencia }}" required>
+    </div>
+    <p class="ayuda">Se aprueba con promedio de al menos 40 y asistencia de al menos 75 %.</p>
+    <button type="submit" class="boton">Enviar</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Ejercicio 2{% endblock %}
+{% block contenido %}
+<section class="tarjeta" aria-labelledby="titulo">
+  <a class="volver" href="{{ url_for('inicio') }}">← Volver al menú</a>
+  <h1 id="titulo">Formulario de nombres</h1>
+  <p>Ingresa tres nombres diferentes para conocer cuál tiene más letras.</p>
+  {% if error %}<div class="alerta" role="alert">{{ error }}</div>{% endif %}
+  <form method="post" action="{{ url_for('ejercicio2') }}">
+    {% for numero in range(1, 4) %}
+    <div class="campo">
+      <label for="nombre{{ numero }}">Nombre {{ numero }}</label>
+      <input id="nombre{{ numero }}" name="nombre{{ numero }}" type="text" maxlength="60" value="{{ datos['nombre' ~ numero] }}" required>
+    </div>
+    {% endfor %}
+    <p class="ayuda">Usa solo letras. Si dos nombres tienen el mismo largo, se muestra el primero ingresado.</p>
+    <button type="submit" class="boton">Enviar</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block contenido %}
+<section class="tarjeta inicio" aria-labelledby="titulo">
+  <span class="subtitulo">Evaluación · Unidad 3</span>
+  <h1 id="titulo">Menú principal</h1>
+  <p>Selecciona uno de los ejercicios para comenzar.</p>
+  <div class="opciones">
+    <a class="boton boton-grande" href="{{ url_for('ejercicio1') }}">Ejercicio 1 <small>Promedio de notas</small></a>
+    <a class="boton boton-grande" href="{{ url_for('ejercicio2') }}">Ejercicio 2 <small>Nombre más largo</small></a>
+  </div>
+  <footer>  
+    <p>Autor: Gustavo Díaz
+    </p>
+  </footer>
+
+</section>
+{% endblock %}

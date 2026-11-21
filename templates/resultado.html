@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Resultado{% endblock %}
+{% block contenido %}
+<section class="tarjeta resultado" aria-labelledby="titulo">
+  <span class="subtitulo">Resultado del ejercicio</span>
+  {% if tipo == 'notas' %}
+    <h1 id="titulo">Promedio y estado</h1>
+    <p>El promedio de las tres notas es:</p>
+    <strong class="dato">{{ '%.2f'|format(datos.promedio) }}</strong>
+    <p>Asistencia: {{ datos.asistencia|int if datos.asistencia == datos.asistencia|int else datos.asistencia }} %</p>
+    <p class="estado {{ 'aprobado' if datos.estado == 'APROBADO' else 'reprobado' }}">{{ datos.estado }}</p>
+    <a class="boton" href="{{ url_for('ejercicio1') }}">Volver al ejercicio 1</a>
+  {% else %}
+    <h1 id="titulo">Nombre con más letras</h1>
+    <p>El nombre con mayor cantidad de caracteres es:</p>
+    <strong class="dato nombre">{{ datos.nombre }}</strong>
+    <p>El nombre tiene <strong>{{ datos.cantidad }}</strong> caracteres.</p>
+    <a class="boton" href="{{ url_for('ejercicio2') }}">Volver al ejercicio 2</a>
+  {% endif %}
+  <a class="volver debajo" href="{{ url_for('inicio') }}">Ir al menú principal</a>
+</section>
+{% endblock %}
